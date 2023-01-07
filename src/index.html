@@ -3,10 +3,64 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <link rel="stylesheet" href="styles/main.scss">
+    <title>OS JS</title>
   </head>
+
   <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
+    
+    <header>
+
+    </header>
+
+    <main>
+
+      <section id="desktop">
+        <button id="tictactoeApp" onclick="openModal('modal1')">modal 1</button>
+        <button id="calculatorApp" onclick="openModal('modal2')">modal 2</button>
+        <button id="horlogeApp" onclick="openModal('modal3')">modal 3</button>
+        <button id="settingsApp" onclick="openModal('modal4')">modal 4</button>
+
+        <button id="ButtonCreateFolder" onclick="displayModalForm()">Nouveau dossier +</button>
+      </section>
+
+      <div id="formNewFolder" style="transform: scale(0);">
+        <input type="text" placeholder="Nom*" id="inputNameFolder">
+        <button onclick="createNewModal()" id="validFolderCreation">Valider</button>
+      </div>
+
+      <div id="modalContainer">
+        <div onmousedown="modalForeground(this)" onclick="modalForeground(this)" id="modal1" class="modal-element">
+            modal1
+            <button onclick="fullScreenModal(this.parentElement, this)">resize</button>
+            <button class="closeModalButton" onclick="closeModal('modal1')">fermer</button>
+        </div>
+        <div onmousedown="modalForeground(this)" onclick="modalForeground(this)" id="modal2" class="modal-element">
+            modal2
+            <button onclick="fullScreenModal(this.parentElement, this)">resize</button>
+            <button class="closeModalButton" onclick="closeModal('modal2')">fermer</button>
+        </div>
+        <div onmousedown="modalForeground(this)" onclick="modalForeground(this)" id="modal3" class="modal-element">
+            modal3
+            <button onclick="fullScreenModal(this.parentElement, this)">resize</button>
+            <button class="closeModalButton" onclick="closeModal('modal3')">fermer</button>
+        </div>
+        <div onmousedown="modalForeground(this)" onclick="modalForeground(this)" id="modal4" class="modal-element">
+          modal4
+          <button onclick="fullScreenModal(this.parentElement, this)">resize</button>
+          <button class="closeModalButton" onclick="closeModal('modal4')">fermer</button>
+        </div>
+      </div>
+
+    </main>
+
+    <nav>
+
+    </nav>
+
+    <!-- SCRIPT -->
+    <script type="" src="/main.js"></script>
+    <script type="" src="./components/modals/modals.js"></script>
   </body>
+
 </html>
