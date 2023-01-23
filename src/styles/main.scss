@@ -1,6 +1,7 @@
 //mettre que des imports ici
 
 @import './components/modals';
+@import './layout/navbar';
 
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
@@ -23,7 +24,14 @@ body {
   margin: 0;
   min-width: 100vw;
   min-height: 100vh;
-  background-color: #213547;
+  background-image: url('../assets/images/background-light.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
 }
+
 
 
