@@ -10,11 +10,19 @@
   <body>
     
     <header>
+      <span id='time'></span>
+      <div>
+        <button class="item" onclick="changeVibrationState()">
+          <img id="vibration-image" src="./assets/svg/volume-up.svg" />
+        </button>
+      </div>
 
     </header>
 
     <main>
 
+      <button onclick="vibrate(1000)">VIBRATE</button>
+      <button onclick="vibratePattern()">VIBRATE PATTERN</button>
       <section id="desktop">
         <button id="tictactoeApp" onclick="openModal('modal1')">modal 1</button>
         <button id="calculatorApp" onclick="openModal('modal2')">modal 2</button>
@@ -72,6 +80,7 @@
     <!-- SCRIPT -->
     <script type="" src="/main.js"></script>
     <script type="" src="./components/modals/modals.js"></script>
+    <script type="" src="./components/header/header.js"></script>
   </body>
 
 </html>

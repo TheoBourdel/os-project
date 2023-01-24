@@ -1,0 +1,9 @@
+button {
+    -webkit-appearance: none; /* Pour les navigateurs webkit */
+    -moz-appearance: none; /* Pour les navigateurs mozilla */
+    appearance: none;
+    background-color: transparent;
+    border:none;
+    cursor: pointer;
+    padding: 0;
+}
