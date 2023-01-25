@@ -12,8 +12,25 @@ header {
     text-align: center;
     color: #FFFFFF;
 
-    & .item {
+    & .items {
         display: flex;
-        align-items: center;
+        flex-direction: row;
+        gap: 20px;
+
+        & img {
+            height: 30px;
+            width: 30px;
+            cursor: pointer;
+        }
+
+        & button {
+            display: flex;
+            align-items: center;
+            & img {
+                height: 23px;
+                width: 23px;
+            }
+        }
     }
+
 }
