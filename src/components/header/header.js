@@ -27,14 +27,15 @@ function changeVibrationState() {
 
     if (vibration === true) {
         vibrationStateImage.src = "../../assets/svg/unmute.svg";
+        vibrationStateImage.title = "vibration : ON"
     } else {
         vibrationStateImage.src = "../../assets/svg/mute.svg";
+        vibrationStateImage.title = "vibration : OFF"
     }
 
 }
 
 function vibrate(ms) {
-    console.log(vibration)
     if (vibration == true) {
         navigator.vibrate(ms);
     }
@@ -68,15 +69,24 @@ if ('getBattery' in navigator) {
 
         // détecte si le PC est en charge ou non (en arrivant sur le site, ou apres refresh)
         if (battery.charging) {
+            
             batteryImage.title = 'en charge : ' + batteryPercentage;
             batteryImage.src = "../../assets/svg/Recharge Battery.svg";
         } else {
-            for (var i in batteryLevels) {
-                if (batteryLevel <= i) {
+            
+            var keysSorted = Object.keys(batteryLevels).sort(function(a, b) {
+                return parseFloat(a) - parseFloat(b);
+            });
+            
+            var condition = false;
+            
+            keysSorted.forEach(function (i) {
+                if (batteryLevel <= parseFloat(i) && !condition) {
                     batteryImage.src = batteryLevels[i];
-                    break;
+                    condition = true;
                 }
-            }
+            });
+            
         }
         batteryImage.title = batteryPercentage;
 
@@ -86,12 +96,19 @@ if ('getBattery' in navigator) {
                 batteryImage.title = 'en charge : ' + batteryPercentage;
                 batteryImage.src = "../../assets/svg/Recharge Battery.svg";
             } else {
-                for (var i in batteryLevels) {
-                    if (batteryLevel <= i) {
-                        batteryImage.src = batteryLevels[i];
-                        break;
-                    }
+                var condition = false;
+            
+                var keysSorted = Object.keys(batteryLevels).sort(function(a, b) {
+                    return parseFloat(a) - parseFloat(b);
+                });
+            keysSorted.forEach(function (i) {
+
+                if (batteryLevel <= parseFloat(i) && !condition) {
+                    batteryImage.title = batteryPercentage;
+                    batteryImage.src = batteryLevels[i];
+                    condition = true;
                 }
+            });
             }
         });
         
@@ -101,3 +118,30 @@ if ('getBattery' in navigator) {
     batteryImage.title = "Désolé, l'état de votre batterie n'est pas disponible";
     batteryImage.src = "../../assets/svg/Battery Alert.svg";
 }
+
+// NETWORK
+let signalImage = document.getElementById("signal");
+
+function getLatency() {
+    const start = performance.now();
+
+    return fetch('https://dog.ceo/api/breeds/list/all')
+    .then(response => response.text())
+    .then(data => {
+        const end = performance.now();
+        const latency = parseInt(end) - parseInt(start);
+        signalImage.title = `${latency} ms`;
+        return latency;
+    });
+}
+
+setInterval(() => {
+    getLatency();
+}, 5000);
+
+
+// DATE
+var date = new Date();
+var date = date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate();
+
+document.getElementById('date').innerHTML = date;

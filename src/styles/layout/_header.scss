@@ -15,7 +15,15 @@ header {
     & .items {
         display: flex;
         flex-direction: row;
-        gap: 20px;
+        align-items: center;
+        gap: 30px;
+        
+
+        
+        & #signal {
+            height: 26px;
+            width: 26px;
+        }
 
         & img {
             height: 30px;
