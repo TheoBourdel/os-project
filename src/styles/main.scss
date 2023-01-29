@@ -1,11 +1,12 @@
 //mettre que des imports ici
 
+@import './abstracts/variables';
 @import './components/modals';
 @import './layout/navbar';
 @import './layout/header';
 @import './base/fonts';
 @import './base/reset';
-
+@import './components/calculator';
 
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;

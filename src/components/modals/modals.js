@@ -183,7 +183,7 @@ function createNewModal() {
     newModal.innerHTML = "<h2>"+folderName+"</h2>";
     newModal.style.backgroundColor = "grey";
 
-    let desktop = document.getElementById("desktop"); 
+    let desktop = document.getElementById("desktop");
     let buttonOpenModal = document.createElement('button');
     buttonOpenModal.setAttribute("id", "button"+folderName);
     buttonOpenModal.setAttribute("onclick", "openModal(\'"+ folderName +"\')");
