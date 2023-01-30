@@ -1,7 +1,8 @@
 function openModal(id) {
     let divModal = document.getElementById(id);
+    divModal.style.left = `${(window.innerWidth - divModal.offsetWidth) / 2}px`;
+    divModal.style.top = `${(window.innerHeight - divModal.offsetHeight) / 2}px`;
     divModal.style.transform = "scale(1)";
-    console.log(divModal);
     divModal.style.transition = "transform .1s ease-out";
     divModal.style.zIndex = "3";
 }
@@ -72,7 +73,6 @@ var oWdgCursor = function (sElement, sLimite) {
       document.addEventListener('mouseup', this.moveDiv) ;
       this.oElement.addEventListener('mouseup', this.moveDiv) ;
       document.addEventListener('touchend', this.moveDiv) ; 
-  
       document.addEventListener('mousemove', this.moveDiv) ; 
       document.addEventListener('touchmove', this.moveDiv) ; 
     }else if(oEvent.type=="touchend" || oEvent.type=="mouseup"){
@@ -152,12 +152,16 @@ function fullScreenModal(element, button) {
     element.style.top = "0px";
     element.style.left = "0px";
     button.setAttribute("onclick", "reduceModal(this.parentElement, this)");
+    button.setAttribute("ontouchstart", "reduceModal(this.parentElement, this)");
 }
   
 function reduceModal(element, button) {
     element.style.width = "500px";
     element.style.height = "500px";
+    element.style.left = `${(window.innerWidth - element.offsetWidth) / 2}px`;
+    element.style.top = `${(window.innerHeight - element.offsetHeight) / 2}px`;
     button.setAttribute("onclick", "fullScreenModal(this.parentElement, this)");
+    button.setAttribute("ontouchstart", "fullScreenModal(this.parentElement, this)");
 }
 
 function displayModalForm() {

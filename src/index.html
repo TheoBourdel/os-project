@@ -49,11 +49,8 @@
             <button class="closeModalButton" onclick="closeModal('modal1')">fermer</button>
         </div> -->
         <div onmousedown="modalForeground(this)" onclick="modalForeground(this)" id="modal1" class="modal-element">
-          <div class="head">
-            
-            <button class="closeModalButton" onclick="closeModal('modal1')"><i class="fa-solid fa-xmark fa-2"></i></button>
-            <button onclick="fullScreenModal(this.parentElement, this)"><i class="fa-regular fa-window-maximize fa-2"></i></i></button>
-          </div>
+          <button class="closeModalButton" onclick="closeModal('modal1')" ontouchstart="closeModal('modal1')"><i class="fa-solid fa-xmark fa-2"></i></button>
+          <button class="resizeModalButton" onclick="fullScreenModal(this.parentElement, this)" ontouchstart="fullScreenModal(this.parentElement, this)"><i class="fa-regular fa-window-maximize fa-2"></i></i></button>
           
           <div class="display">
             <div class="content">
