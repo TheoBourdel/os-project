@@ -29,13 +29,12 @@
       <button onclick="vibrate(1000)">VIBRATE</button>
       <button onclick="vibratePattern()">VIBRATE PATTERN</button>
       <section id="desktop">
-        <button id="tictactoeApp" onclick="openModal('modal1')">modal 1</button>
-        <button id="calculatorApp" onclick="openModal('modal2')">modal 2</button>
+        <div class="icons_app"><img id="tictactoeApp" onclick="openModal('modal1')" src="assets/svg/Folder.svg"><span>Dossiers</span></div>
+        <!--<button id="calculatorApp" onclick="openModal('modal2')">modal 2</button>
         <button id="horlogeApp" onclick="openModal('modal3')">modal 3</button>
-        <button id="settingsApp" onclick="openModal('modal4')">modal 4</button>
-
-        <button id="ButtonCreateFolder" onclick="displayModalForm()">Nouveau dossier +</button>
+        <button id="settingsApp" onclick="openModal('modal4')">modal 4</button>-->
       </section>
+      <button id="ButtonCreateFolder" onclick="displayModalForm()">Nouveau dossier +</button>
 
       <div id="formNewFolder" style="transform: scale(0);">
         <input type="text" placeholder="Nom*" id="inputNameFolder">
@@ -186,3 +185,23 @@
   </body>
 
 </html>
+
+<style>
+  .icons_app{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+  }
+
+  main{
+    width: 100vw;
+    height: 81vh;
+  }
+
+  #desktop{
+    display: flex;
+    max-width: 50%;
+    flex-wrap: wrap;
+  }
+</style>
