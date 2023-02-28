@@ -1,0 +1,33 @@
+.modal-element {
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+    transform: scale(0);
+    display:inline-block;
+    border: 1px solid grey; 
+    left:50%;
+    top:50%;
+    cursor:move;
+    vertical-align:top;
+    /* Obligatoire sur l'élément draggable */
+    position:absolute;
+    z-index: 1;
+}
+/* Supprimer à l'avenir */
+#modal1 {
+    background-color: red;
+}
+
+#modal2 {
+    background-color: blue;
+}
+
+#modal3 {
+    background-color: green;
+}
+
+/* Class ajouté quand on dragge */
+.oWdgCursorDrag{
+    border-color:red;
+    box-shadow: 3px 3px 5px 3px #656565;
+} 

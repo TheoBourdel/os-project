@@ -1,0 +1,44 @@
+header {
+    width: 96%;
+    margin: 10px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19.6px;
+    line-height: 29px;
+    text-align: center;
+    color: #FFFFFF;
+
+    & .items {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 30px;
+        
+
+        
+        & #signal {
+            height: 26px;
+            width: 26px;
+        }
+
+        & img {
+            height: 30px;
+            width: 30px;
+            cursor: pointer;
+        }
+
+        & button {
+            display: flex;
+            align-items: center;
+            & img {
+                height: 23px;
+                width: 23px;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,74 @@
+//mettre que des imports ici
+
+@import './abstracts/variables';
+@import './components/modals';
+@import './layout/navbar';
+@import './layout/header';
+@import './base/fonts';
+@import './base/reset';
+@import './components/calculator';
+@import './components/tictactoe';
+@import './components/settings';
+@import './components/login';
+
+
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+.light-mode {
+  background-image: url('../assets/images/test.png') !important;
+  margin: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dark-mode {
+  background-image: url('../assets/images/background-dark.png') !important;
+  margin: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+@media screen and (max-width: 1200px) {
+  .lock {
+    bottom: 70px !important;
+    right: 50px;
+  }
+}
+.lock {
+  background: linear-gradient(90.99deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.35) 99.02%);
+  box-shadow: 0px 4px 25px -1px rgba(0, 0, 0, 0.25);
+  padding: 10px 30px 10px 30px;
+  border-radius: 20px;
+  position: absolute;
+  bottom: 20px;
+  right: 50px;
+}
+
