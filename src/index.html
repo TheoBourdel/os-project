@@ -8,11 +8,19 @@
     <title>OS JS</title>
   </head>
 
-  <body>
+  <body id="body" class="dark-mode">
     
     <header>
-      <span id='time'></span>
-      <time id="date"></time>
+      <span id='time'>
+        <span id="hour"></span>
+        <span id="minute"></span>
+        <span id="second"></span>
+      </span>
+      <time id="date">
+        <span id="day"></span>
+        <span id="month"></span>
+        <span id="year"></span>
+      </time>
       <div class="items">
         
         <img title="" id="signal" src="./assets/svg/signal.svg" />
@@ -25,7 +33,6 @@
     </header>
 
     <main>
-
       <button onclick="vibrate(1000)">VIBRATE</button>
       <button onclick="vibratePattern()">VIBRATE PATTERN</button>
       <section id="desktop">
@@ -40,13 +47,80 @@
         <input type="text" placeholder="Nom*" id="inputNameFolder">
         <button onclick="createNewModal()" id="validFolderCreation">Valider</button>
       </div>
-
+      
       <div id="modalContainer">
         <!-- <div onmousedown="modalForeground(this)" onclick="modalForeground(this)" id="modal1" class="modal-element">
             modal1
             <button onclick="fullScreenModal(this.parentElement, this)">resize</button>
             <button class="closeModalButton" onclick="closeModal('modal1')">fermer</button>
         </div> -->
+        
+        <div onmousedown="modalForeground(this)" onclick="modalForeground(this)" id="modal3" class="modal-element">
+          <button class="closeModalButton" onclick="closeModal('modal3')" ontouchstart="closeModal('modal3')"><i class="fa-solid fa-xmark fa-2"></i></button>
+          <button class="resizeModalButton" onclick="fullScreenModal(this.parentElement, this)" ontouchstart="fullScreenModal(this.parentElement, this)"><i class="fa-regular fa-window-maximize fa-2"></i></i></button>
+          <div>
+            <h3>Network</h3>
+            
+            <div class="item">
+              <p>Afficher la latence réseau</p>
+              <form class="inputs">
+                <input onclick="displayElement('#signal')" id="toggle-on" class="toggle toggle-left" name="toggle" value="false" type="radio" checked>
+                <label for="toggle-on" class="btn">Yes</label>
+                <input onclick="hideElement('#signal')" id="toggle-off" class="toggle toggle-right" name="toggle" value="true" type="radio">
+                <label for="toggle-off" class="btn">No</label>
+              </form>
+            </div>
+            <h3>Hour</h3>
+            <p>Afficher / Masquer</p>
+            <form class="inputs">
+              <input type="checkbox" id="show-day" checked>
+              <label for="show-day">Jour</label>
+
+              <input type="checkbox" id="show-month" checked>
+              <label for="show-month">Mois</label>
+
+              <input type="checkbox" id="show-year" checked>
+              <label for="show-year">Année</label>
+            </form>
+            <h3>Date</h3>
+            <p>Afficher / Masquer</p>
+            <form class="inputs">
+              <label for="show-hour">Heure</label>
+              <input type="checkbox" id="show-hour" checked onchange="startTime()">
+              <label for="show-minute">Minutes</label>
+              <input type="checkbox" id="show-minute" checked onchange="startTime()">
+              <label for="show-second">Secondes</label>
+              <input type="checkbox" id="show-second" checked onchange="startTime()">
+            </form>
+            <h3>Vibration</h3>
+            <p>Afficher l'état de la vibration</p>
+            <div class="item">
+              <input onclick="displayElement('#vibration-image')" id="toggle-on" class="toggle toggle-left" name="toggle" value="false" type="radio" checked>
+              <label for="toggle-on" class="btn">Yes</label>
+              <input onclick="hideElement('#vibration-image')" id="toggle-off" class="toggle toggle-right" name="toggle" value="true" type="radio">
+              <label for="toggle-off" class="btn">No</label>
+            </div>
+            <p>Activer / Désactiver la vibration</p>
+            <button id="vibrationButton" onclick="changeVibrationState()">
+              Activer
+            </button>
+            <h3>Battery</h3>
+            <p>Afficher/Masquer l'état de la batterie</p>
+            <div class="item">
+              <input onclick="displayElement('#battery')" id="toggle-on" class="toggle toggle-left" name="toggle" value="false" type="radio" checked>
+              <label for="toggle-on" class="btn">Yes</label>
+              <input onclick="hideElement('#battery')" id="toggle-off" class="toggle toggle-right" name="toggle" value="true" type="radio">
+              <label for="toggle-off" class="btn">No</label>
+            </div>
+            <h3>Thème</h3>
+            <button onclick="toggleDarkMode()">Dark/Light</button>
+          </div>
+        </div>
+
+
+
+
+
         <div onmousedown="modalForeground(this)" onclick="modalForeground(this)" id="modal1" class="modal-element">
           <button class="closeModalButton" onclick="closeModal('modal1')" ontouchstart="closeModal('modal1')"><i class="fa-solid fa-xmark fa-2"></i></button>
           <button class="resizeModalButton" onclick="fullScreenModal(this.parentElement, this)" ontouchstart="fullScreenModal(this.parentElement, this)"><i class="fa-regular fa-window-maximize fa-2"></i></i></button>
@@ -143,10 +217,34 @@
     
         </div>
         <div onmousedown="modalForeground(this)" onclick="modalForeground(this)" id="modal2" class="modal-element">
-            modal2
-            <button onclick="fullScreenModal(this.parentElement, this)">resize</button>
-            <button class="closeModalButton" onclick="closeModal('modal2')">fermer</button>
-        </div>
+          <button class="resizeModalButton" onclick="fullScreenModal(this.parentElement, this)" ontouchstart="fullScreenModal(this.parentElement, this)"><i class="fa-regular fa-window-maximize fa-2"></i></i></button>
+          <button class="closeModalButton" onclick="closeModal('modal2')" ontouchstart="closeModal('modal2')"><i class="fa-solid fa-xmark fa-2"></i></button>
+
+          <section class="players-container">
+            <div class="pl"><span class="player--x ply">PLAYER (X)</div>
+            <div class="pl"><span class="player--o ply">PLAYER (O)</div>       
+          </section>
+
+          <h2 class="game--status"></h2>
+
+          <div class="box-container">
+            <div id="0" class="box"></div>
+            <div id="1" class="box"></div>
+            <div id="2" class="box"></div>
+            <div id="3" class="box"></div>
+            <div id="4" class="box"></div>
+            <div id="5" class="box"></div>
+            <div id="6" class="box"></div>
+            <div id="7" class="box"></div>
+            <div id="8" class="box"></div>
+            <div></div>
+            <section class="controls">
+              <button id="reset"><i class="fa-solid fa-rotate-right fa-2x"></i></button>
+            </section>
+          </div>
+
+
+          </div>
         <div onmousedown="modalForeground(this)" onclick="modalForeground(this)" id="modal3" class="modal-element">
             modal3
             <button onclick="fullScreenModal(this.parentElement, this)">resize</button>
@@ -166,13 +264,13 @@
       <button class="item">
         <img src="./assets/svg/time.svg" />
       </button>
-      <div class="item">
+      <div class="item" onclick="openModal('modal2')">
         <img src="./assets/svg/controller.svg" />
       </div>
       <div class="item" onclick="openModal('modal1')">
         <img src="./assets/svg/calculator.svg" />
       </div>
-      <div class="item">
+      <div class="item" onclick="openModal('modal3')">
         <img src="./assets/svg/settings.svg" />
       </div>
     </nav>
@@ -182,6 +280,9 @@
     <script type="" src="./components/modals/modals.js"></script>
     <script type="" src="./components/header/header.js"></script>
     <script type="" src="./components/calculator/calculator.js"></script>
+    <script type="" src="./components/tictactoe/tictacjoe.js"></script>
+    <script type="module" src="./sentry/sentry.js"></script>
+    <script type="" src="./components/settings/settings.js"></script>
   </body>
 
 </html>
