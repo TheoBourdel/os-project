@@ -32,6 +32,8 @@
 
     </header>
 
+    <button class="lock" id="logoutBtn"><i class="fa-solid fa-power-off"></i></button>
+
     <main>
       <button onclick="vibrate(1000)">VIBRATE</button>
       <button onclick="vibratePattern()">VIBRATE PATTERN</button>
@@ -58,7 +60,7 @@
         <div onmousedown="modalForeground(this)" onclick="modalForeground(this)" id="modal3" class="modal-element">
           <button class="closeModalButton" onclick="closeModal('modal3')" ontouchstart="closeModal('modal3')"><i class="fa-solid fa-xmark fa-2"></i></button>
           <button class="resizeModalButton" onclick="fullScreenModal(this.parentElement, this)" ontouchstart="fullScreenModal(this.parentElement, this)"><i class="fa-regular fa-window-maximize fa-2"></i></i></button>
-          <div>
+          <div class="content">
             <h3>Network</h3>
             
             <div class="item">
@@ -283,6 +285,8 @@
     <script type="" src="./components/tictactoe/tictacjoe.js"></script>
     <script type="module" src="./sentry/sentry.js"></script>
     <script type="" src="./components/settings/settings.js"></script>
+    <script type="" src="./components/login/login.js"></script>
+    <script type="" src="./components/logout/logout.js"></script>
   </body>
 
 </html>
