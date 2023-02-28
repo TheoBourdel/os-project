@@ -43,6 +43,7 @@
       </div>
 
       <div id="modalContainer">
+
         <!-- <div onmousedown="modalForeground(this)" onclick="modalForeground(this)" id="modal1" class="modal-element">
             modal1
             <button onclick="fullScreenModal(this.parentElement, this)">resize</button>
@@ -149,22 +150,63 @@
             <button class="closeModalButton" onclick="closeModal('modal2')">fermer</button>
         </div>
         <div onmousedown="modalForeground(this)" onclick="modalForeground(this)" id="modal3" class="modal-element">
+            <input type="text" class="clock_input">
+            
             modal3
             <button onclick="fullScreenModal(this.parentElement, this)">resize</button>
             <button class="closeModalButton" onclick="closeModal('modal3')">fermer</button>
         </div>
+
         <div onmousedown="modalForeground(this)" onclick="modalForeground(this)" id="modal4" class="modal-element">
-          modal4
-          <button onclick="fullScreenModal(this.parentElement, this)">resize</button>
-          <button class="closeModalButton" onclick="closeModal('modal4')">fermer</button>
+          <button class="closeModalButton" onclick="closeModal('modal4')" ontouchstart="closeModal('modal4')"><i class="fa-solid fa-xmark fa-2"></i></button>
+          <button class="resizeModalButton" onclick="fullScreenModal(this.parentElement, this)" ontouchstart="fullScreenModal(this.parentElement, this)"><i class="fa-regular fa-window-maximize fa-2"></i></i></button>
+          
+            <div id="clock_container">
+                <div id="clock_buttons_container">
+                    <button id="clock_hour_btn" class="clock_btn">Heure</button>
+                    <button id="clock_chrono_btn" class="clock_btn">chrono</button>
+                    <button id="clock_minute_btn" class="clock_btn">Minutes</button>
+                </div>
+                <div id="clock_container_hour">
+                    <p id="clock_syntese_date"></p>
+                    <p id="clock_hours"></p>
+                    <p id="clock_munites"></p>
+                </div>
+                <div id="clock_container_chrono">
+                    <div id="clock_chrono_numb">
+                        <div>
+                            <span id="clock_chrono_time"></span>
+                        </div>
+                        <button id="clock_chrono_button" class="clock_chrono_play">
+                            <i id="clcok_i" class="fa-solid fa-play fa-2"></i>
+                        </button>
+                    </div>
+                    <div id="clock_chrono_btn_container">
+                        <button id="clock_chrono_button" class="clock_chrono_pause">
+                            <i id="clcok_i" class="fa-solid fa-pause fa-2"></i>
+                        </button>
+                        <button id="clock_chrono_button" class="clock_chrono_stop">
+                            <i id="clcok_i" class="fa-solid fa-stop fa-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="clock_container_minutes">
+                    <div class="clock_timer">
+                        <p id="clock_timer"></p>
+                    </div>
+                    <p class="clock_timer_message">TIME IS UP !</p>
+                    <button id="clock_timer_button" class="clock_timer_play">
+                        Add timer
+                    </button>
+                </div>
+
+            </div>
         </div>
       </div>
-
     </main>
-
     <nav>
-      
-      <button class="item">
+      <button class="item" onclick="openModal('modal4')">
         <img src="./assets/svg/time.svg" />
       </button>
       <div class="item">
@@ -183,6 +225,7 @@
     <script type="" src="./components/modals/modals.js"></script>
     <script type="" src="./components/header/header.js"></script>
     <script type="" src="./components/calculator/calculator.js"></script>
-  </body>
+    <script type="" src="./components/clock/clock.js"></script>
 
+  </body>
 </html>

@@ -156,12 +156,22 @@ function fullScreenModal(element, button) {
 }
   
 function reduceModal(element, button) {
-    element.style.width = "500px";
-    element.style.height = "500px";
-    element.style.left = `${(window.innerWidth - element.offsetWidth) / 2}px`;
-    element.style.top = `${(window.innerHeight - element.offsetHeight) / 2}px`;
-    button.setAttribute("onclick", "fullScreenModal(this.parentElement, this)");
-    button.setAttribute("ontouchstart", "fullScreenModal(this.parentElement, this)");
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    element.style.width = "80vw";
+    element.style.height = "60vh";
+      element.style.left = `${(window.innerWidth - element.offsetWidth) / 2}px`;
+      element.style.top = `${(window.innerHeight - element.offsetHeight) / 2}px`;
+      button.setAttribute("onclick", "fullScreenModal(this.parentElement, this)");
+      button.setAttribute("ontouchstart", "fullScreenModal(this.parentElement, this)");
+  } else {
+      element.style.width = "500px";
+      element.style.height = "500px";
+      element.style.left = `${(window.innerWidth - element.offsetWidth) / 2}px`;
+      element.style.top = `${(window.innerHeight - element.offsetHeight) / 2}px`;
+      button.setAttribute("onclick", "fullScreenModal(this.parentElement, this)");
+      button.setAttribute("ontouchstart", "fullScreenModal(this.parentElement, this)");
+  }
+  
 }
 
 function displayModalForm() {
@@ -211,3 +221,4 @@ function createNewModal() {
     
     var oZone1 = new oWdgCursor(folderName);
 }
+
