@@ -35,8 +35,6 @@
     <button class="lock" id="logoutBtn"><i class="fa-solid fa-power-off"></i></button>
 
     <main>
-      <button onclick="vibrate(1000)">VIBRATE</button>
-      <button onclick="vibratePattern()">VIBRATE PATTERN</button>
       <section id="desktop">
         <div class="icons_app"><img id="tictactoeApp" onclick="openModal('modal1')" src="assets/svg/Folder.svg"><span>Dossiers</span></div>
         <!--<button id="calculatorApp" onclick="openModal('modal2')">modal 2</button>
@@ -71,27 +69,27 @@
                 <label for="toggle-off" class="btn">No</label>
               </form>
             </div>
-            <h3>Hour</h3>
-            <p>Afficher / Masquer</p>
-            <form class="inputs">
-              <input type="checkbox" id="show-day" checked>
-              <label for="show-day">Jour</label>
-
-              <input type="checkbox" id="show-month" checked>
-              <label for="show-month">Mois</label>
-
-              <input type="checkbox" id="show-year" checked>
-              <label for="show-year">Année</label>
-            </form>
             <h3>Date</h3>
             <p>Afficher / Masquer</p>
             <form class="inputs">
+              <input type="checkbox" id="show-day">
+              <label for="show-day">Jour</label>
+
+              <input type="checkbox" id="show-month">
+              <label for="show-month">Mois</label>
+
+              <input type="checkbox" id="show-year">
+              <label for="show-year">Année</label>
+            </form>
+            <h3>Hour</h3>
+            <p>Afficher / Masquer</p>
+            <form class="inputs">
               <label for="show-hour">Heure</label>
-              <input type="checkbox" id="show-hour" checked onchange="startTime()">
+              <input type="checkbox" id="showHour" onchange="startTime()">
               <label for="show-minute">Minutes</label>
-              <input type="checkbox" id="show-minute" checked onchange="startTime()">
+              <input type="checkbox" id="showMinute" onchange="startTime()">
               <label for="show-second">Secondes</label>
-              <input type="checkbox" id="show-second" checked onchange="startTime()">
+              <input type="checkbox" id="showSecond" onchange="startTime()">
             </form>
             <h3>Vibration</h3>
             <p>Afficher / Masquer</p>
@@ -107,12 +105,12 @@
             </button>
             <h3>Battery</h3>
             <p>Afficher / Masquer</p>
-            <div class="item">
+            <form class="item">
               <input onclick="displayElement('#battery')" id="toggle-on" class="toggle toggle-left" name="toggle" value="false" type="radio" checked>
               <label for="toggle-on" class="btn">Yes</label>
               <input onclick="hideElement('#battery')" id="toggle-off" class="toggle toggle-right" name="toggle" value="true" type="radio">
               <label for="toggle-off" class="btn">No</label>
-            </div>
+            </form>
             <h3>Thème</h3>
             <button onclick="toggleDarkMode()">Dark/Light</button>
           </div>

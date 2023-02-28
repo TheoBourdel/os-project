@@ -5,9 +5,15 @@ function startTime() {
     var m = today.getMinutes();
     var s = today.getSeconds();
 
-    var showHour = document.getElementById("show-hour").checked;
-    var showMinute = document.getElementById("show-minute").checked;
-    var showSecond = document.getElementById("show-second").checked;
+    // Récupérer les valeurs stockées dans le localStorage pour les cases à cocher
+    var showHour = JSON.parse(localStorage.getItem("showHour"));
+    var showMinute = JSON.parse(localStorage.getItem("showMinute"));
+    var showSecond = JSON.parse(localStorage.getItem("showSecond"));
+
+    // Cocher ou décocher les cases en fonction des valeurs récupérées
+    document.getElementById("showHour").checked = showHour;
+    document.getElementById("showMinute").checked = showMinute;
+    document.getElementById("showSecond").checked = showSecond;
 
     // Afficher ou masquer les heures
     if (showHour) {
@@ -43,7 +49,45 @@ function checkTime(i) {
     return i;
 }
 
+function updateDisplay() {
+    var showDay = document.getElementById("showHour").checked;
+    var showMonth = document.getElementById("showMinute").checked;
+    var showYear = document.getElementById("showSecond").checked;
+
+    // sauvegarder les choix de l'utilisateur
+    localStorage.setItem("showHour", showDay);
+    localStorage.setItem("showMinute", showMonth);
+    localStorage.setItem("showSecond", showYear);
+
+    // mettre à jour l'affichage
+    startTime();
+}
+
+// attacher l'événement de clic aux cases à cocher
+document.getElementById("showHour").addEventListener("click", updateDisplay);
+document.getElementById("showMinute").addEventListener("click", updateDisplay);
+document.getElementById("showSecond").addEventListener("click", updateDisplay);
+
+// attacher l'événement de modification de la case à cocher
+document.getElementById("showHour").addEventListener("change", function() {
+    updateLocalStorage();
+    startTime();
+  });
+  
+  document.getElementById("showMinute").addEventListener("change", function() {
+    updateLocalStorage();
+    startTime();
+  });
+  
+  document.getElementById("showSecond").addEventListener("change", function() {
+    updateLocalStorage();
+    startTime();
+  });
+
+// appeler la fonction startTime pour afficher l'horloge
 startTime();
+
+
 
 
 
@@ -153,6 +197,18 @@ if ('getBattery' in navigator) {
 
 // NETWORK
 let signalImage = document.getElementById("signal");
+let toggleOn = document.getElementById("toggle-on");
+let toggleOff = document.getElementById("toggle-off");
+
+// Vérifier l'état enregistré dans le localStorage
+let savedState = localStorage.getItem("signalState");
+if (savedState === "hidden") {
+  hideElement('#signal');
+  toggleOff.checked = true;
+} else {
+  displayElement('#signal');
+  toggleOn.checked = true;
+}
 
 function getLatency() {
     const start = performance.now();
@@ -171,6 +227,13 @@ setInterval(() => {
     getLatency();
 }, 5000);
 
+toggleOn.addEventListener('click', function() {
+    localStorage.setItem("signalState", "visible");
+  });
+  
+  toggleOff.addEventListener('click', function() {
+    localStorage.setItem("signalState", "hidden");
+  });
 
 // DATE
 // var date = new Date();
@@ -183,9 +246,29 @@ function startDate() {
     var month = today.getMonth() + 1;
     var year = today.getFullYear();
 
-    var showDay = document.getElementById("show-day").checked;
-    var showMonth = document.getElementById("show-month").checked;
-    var showYear = document.getElementById("show-year").checked;
+    // Récupérer les valeurs du localStorage
+    var showDay = localStorage.getItem("show-day") === "true";
+    var showMonth = localStorage.getItem("show-month") === "true";
+    var showYear = localStorage.getItem("show-year") === "true";
+
+    // Cocher ou décocher les cases en fonction des valeurs du localStorage
+    document.getElementById("show-day").checked = showDay;
+    document.getElementById("show-month").checked = showMonth;
+    document.getElementById("show-year").checked = showYear;
+
+    // Ajouter les événements pour mettre à jour l'affichage
+    document.getElementById("show-day").addEventListener("change", function() {
+        localStorage.setItem("show-day", this.checked);
+        document.getElementById("day").style.display = this.checked ? "inline" : "none";
+      });
+      document.getElementById("show-month").addEventListener("change", function() {
+        localStorage.setItem("show-month", this.checked);
+        document.getElementById("month").style.display = this.checked ? "inline" : "none";
+      });
+      document.getElementById("show-year").addEventListener("change", function() {
+        localStorage.setItem("show-year", this.checked);
+        document.getElementById("year").style.display = this.checked ? "inline" : "none";
+      });
 
     // Afficher ou masquer le jour
     if (showDay) {
@@ -211,6 +294,7 @@ function startDate() {
     document.getElementById("day").textContent = day + "/";
     document.getElementById("month").textContent = month + "/";
     document.getElementById("year").textContent = year;
+
 
     let t = setTimeout(startDate, 500);
 }
