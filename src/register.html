@@ -2,21 +2,21 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Connexion à l'OS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles/main.scss">
+    <title>Inscription à l'OS</title>
   </head>
-  <body>
-    <h1>Connexion à l'OS</h1>
-    <form id="register-form">
-        <label for="username">Nom d'utilisateur :</label>
-        <input type="text" id="username" name="username" required>
+  <body class="connexion">
+    <form class="login-form" id="register-form">
+      <h1>Inscription à l'OS</h1>
+
+      <input class="login-input" placeholder="Nom d'utilisateur" type="text" id="username" name="username" required> 
+      <input class="login-input" placeholder="Email" type="email" id="email" name="email" required>
+      <input class="login-input" placeholder="Mot de passe" type="password" id="password" name="password" required>
         
-        <label for="email">Adresse e-mail :</label>
-        <input type="email" id="email" name="email" required>
-        
-        <label for="password">Mot de passe :</label>
-        <input type="password" id="password" name="password" required>
-        
-        <button type="submit">S'inscrire</button>
+      <button class="login-button" type="submit">S'inscrire</button>
+      <p>Already registered ?<a href="login.html">Login</a></p>
+
     </form>
   </body>
 

@@ -56,7 +56,12 @@
   flex-direction: column;
   align-items: center;
 }
-
+@media screen and (max-width: 1200px) {
+  .lock {
+    bottom: 70px !important;
+    right: 50px;
+  }
+}
 .lock {
   background: linear-gradient(90.99deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.35) 99.02%);
   box-shadow: 0px 4px 25px -1px rgba(0, 0, 0, 0.25);
