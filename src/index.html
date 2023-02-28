@@ -62,9 +62,8 @@
           <button class="resizeModalButton" onclick="fullScreenModal(this.parentElement, this)" ontouchstart="fullScreenModal(this.parentElement, this)"><i class="fa-regular fa-window-maximize fa-2"></i></i></button>
           <div class="content">
             <h3>Network</h3>
-            
+            <p>Afficher / Masquer</p>
             <div class="item">
-              <p>Afficher la latence réseau</p>
               <form class="inputs">
                 <input onclick="displayElement('#signal')" id="toggle-on" class="toggle toggle-left" name="toggle" value="false" type="radio" checked>
                 <label for="toggle-on" class="btn">Yes</label>
@@ -95,19 +94,19 @@
               <input type="checkbox" id="show-second" checked onchange="startTime()">
             </form>
             <h3>Vibration</h3>
-            <p>Afficher l'état de la vibration</p>
+            <p>Afficher / Masquer</p>
             <div class="item">
               <input onclick="displayElement('#vibration-image')" id="toggle-on" class="toggle toggle-left" name="toggle" value="false" type="radio" checked>
               <label for="toggle-on" class="btn">Yes</label>
               <input onclick="hideElement('#vibration-image')" id="toggle-off" class="toggle toggle-right" name="toggle" value="true" type="radio">
               <label for="toggle-off" class="btn">No</label>
             </div>
-            <p>Activer / Désactiver la vibration</p>
+            <p>Activer / Désactiver</p>
             <button id="vibrationButton" onclick="changeVibrationState()">
               Activer
             </button>
             <h3>Battery</h3>
-            <p>Afficher/Masquer l'état de la batterie</p>
+            <p>Afficher / Masquer</p>
             <div class="item">
               <input onclick="displayElement('#battery')" id="toggle-on" class="toggle toggle-left" name="toggle" value="false" type="radio" checked>
               <label for="toggle-on" class="btn">Yes</label>
