@@ -126,7 +126,7 @@ var oWdgCursor = function (sElement, sLimite) {
   }//fct 
   
   document.addEventListener('DOMContentLoaded',function(){
-    var oZone1 = new oWdgCursor('modal1');
+    var oZone1 = new oWdgCursor('fileExplorer');
     var oZone1 = new oWdgCursor('modal2');  
     var oZone1 = new oWdgCursor('modal3');
     var oZone1 = new oWdgCursor('modal4');
@@ -171,7 +171,7 @@ function reduceModal(element, button) {
       button.setAttribute("onclick", "fullScreenModal(this.parentElement, this)");
       button.setAttribute("ontouchstart", "fullScreenModal(this.parentElement, this)");
   }
-  
+
 }
 
 function displayModalForm() {
@@ -181,6 +181,8 @@ function displayModalForm() {
 }
 
 function createNewModal() {
+    let formModal = document.getElementById('formNewFolder');
+    formModal.style.transform = "scale(0)";
     let inputFolderName = document.getElementById("inputNameFolder");
     let folderName = document.getElementById("inputNameFolder").value;
 
@@ -190,12 +192,12 @@ function createNewModal() {
     }
 
     let newModal = document.createElement("div");
-    newModal.setAttribute("class", "modal-element");
+    newModal.setAttribute("class", "directory-element modal-element");
     newModal.setAttribute("id", folderName);
     newModal.setAttribute("onclick", "modalForeground(this)");
     newModal.setAttribute("onchange", "modalForeground(this)");
     newModal.innerHTML = "<h2>"+folderName+"</h2>";
-    newModal.style.backgroundColor = "grey";
+
 
     let desktop = document.getElementById("desktop");
     let iconsApp = document.createElement("div");
@@ -214,19 +216,64 @@ function createNewModal() {
 
     let buttonResize = document.createElement('button');
     buttonResize.setAttribute("onclick", onclick="fullScreenModal(this.parentElement, this)");
-    buttonResize.innerHTML = "resize";
+    buttonResize.setAttribute("class", "resizeModalButton");
+    let iconResize = document.createElement("i");
+    iconResize.setAttribute("class", "fa-regular fa-window-maximize fa-2");
+    buttonResize.appendChild(iconResize);
+
 
     let buttonClose = document.createElement('button');
     buttonClose.setAttribute("onclick", onclick="closeModal(\'"+ folderName +"\')");
     buttonClose.setAttribute("class", "closeModalButton");
-    buttonClose.innerHTML = "fermer";
+    let iconClose = document.createElement("i");
+    iconClose.setAttribute("class", "fa-solid fa-xmark fa-2");
+    buttonClose.appendChild(iconClose);
 
     newModal.appendChild(buttonResize);
     newModal.appendChild(buttonClose);
 
     let divMain = document.getElementById("modalContainer");
     divMain.appendChild(newModal);
-    
+
+    /*add to desktop list*/
+    let DesktopListElement = document.getElementById("DesktopUl");
+    let list = document.createElement("li");
+    let ulElement = document.createElement("ul");
+    ulElement.setAttribute("class", "nested " + folderName + "Ul");
+    list.setAttribute("id", folderName + 'List');
+    let spanName = document.createElement("span");
+    spanName.setAttribute("class", "caret");
+    spanName.innerHTML = folderName;
+    list.appendChild(spanName);
+    list.appendChild(ulElement);
+    DesktopListElement.appendChild(list);
+
+    /******************* */
+
     var oZone1 = new oWdgCursor(folderName);
+}
+
+mainContainer = document.getElementById("mainContainer");
+mainContainer.addEventListener('contextmenu', function(ev) {
+  ev.preventDefault();
+  displayModalForm();
+  return false;
+}, false);
+
+/*let fileExplorer = document.getElementById("fileExplorer");
+fileExplorer.addEventListener('contextmenu', function(ev) {
+  ev.preventDefault();
+  displayModalForm();
+  return false;
+}, false);*/
+
+var toggler = document.getElementsByClassName("caret");
+var i;
+
+for (i = 0; i < toggler.length; i++) {
+  toggler[i].addEventListener("click", function() {
+    this.parentElement.querySelector(".nested").classList.toggle("active");
+    this.classList.toggle("caret-down");
+  });
 }
 

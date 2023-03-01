@@ -34,20 +34,20 @@
 
     <button class="lock" id="logoutBtn"><i class="fa-solid fa-power-off"></i></button>
 
-    <main>
+    <main id="mainContainer">
       <section id="desktop">
-        <div class="icons_app"><img id="tictactoeApp" onclick="openModal('modal1')" src="assets/svg/Folder.svg"><span>Dossiers</span></div>
+        <div class="icons_app"><img id="tictactoeApp" onclick="openModal('fileExplorer')" src="assets/svg/Folder.svg"><span>Dossiers</span></div>
         <!--<button id="calculatorApp" onclick="openModal('modal2')">modal 2</button>
         <button id="horlogeApp" onclick="openModal('modal3')">modal 3</button>
         <button id="settingsApp" onclick="openModal('modal4')">modal 4</button>-->
       </section>
-      <button id="ButtonCreateFolder" onclick="displayModalForm()">Nouveau dossier +</button>
+      <!--<button id="ButtonCreateFolder" onclick="displayModalForm()">Nouveau dossier +</button>-->
 
       <div id="formNewFolder" style="transform: scale(0);">
         <input type="text" placeholder="Nom*" id="inputNameFolder">
         <button onclick="createNewModal()" id="validFolderCreation">Valider</button>
       </div>
-      
+
       <div id="modalContainer">
 
         <!-- <div onmousedown="modalForeground(this)" onclick="modalForeground(this)" id="modal1" class="modal-element">
@@ -55,7 +55,7 @@
             <button onclick="fullScreenModal(this.parentElement, this)">resize</button>
             <button class="closeModalButton" onclick="closeModal('modal1')">fermer</button>
         </div> -->
-        
+
         <div onmousedown="modalForeground(this)" onclick="modalForeground(this)" id="modal3" class="modal-element">
           <button class="closeModalButton" onclick="closeModal('modal3')" ontouchstart="closeModal('modal3')"><i class="fa-solid fa-xmark fa-2"></i></button>
           <button class="resizeModalButton" onclick="fullScreenModal(this.parentElement, this)" ontouchstart="fullScreenModal(this.parentElement, this)"><i class="fa-regular fa-window-maximize fa-2"></i></i></button>
@@ -222,7 +222,7 @@
 
           <section class="players-container">
             <div class="pl"><span class="player--x ply">PLAYER (X)</div>
-            <div class="pl"><span class="player--o ply">PLAYER (O)</div>       
+            <div class="pl"><span class="player--o ply">PLAYER (O)</div>
           </section>
 
           <h2 class="game--status"></h2>
@@ -245,9 +245,32 @@
 
 
           </div>
+        <div onmousedown="modalForeground(this)" onclick="modalForeground(this)" id="fileExplorer" class="modal-element">
+          <!-- <div class="modal-buttons-container"> -->
+          <button class="resizeModalButton" onclick="fullScreenModal(this.parentElement, this)" ontouchstart="fullScreenModal(this.parentElement, this)"><i class="fa-regular fa-window-maximize fa-2"></i></i></button>
+          <button class="closeModalButton" onclick="closeModal('fileExplorer')" ontouchstart="closeModal('fileExplorer')"><i class="fa-solid fa-xmark fa-2"></i></button>
+          <!-- </div> -->
+
+          <div class="display">
+            <div class="content">
+              <div class="input"></div>
+              <div class="output"></div>
+            </div>
+          </div>
+
+          <ul id="fileExplorerList" class="tree-list">
+            <li id="DesktopList"><span class="caret">Desktop</span>
+              <ul id="DesktopUl" class="nested">
+
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+        </div>
         <div onmousedown="modalForeground(this)" onclick="modalForeground(this)" id="modal3" class="modal-element">
             <input type="text" class="clock_input">
-            
+
             modal3
             <button onclick="fullScreenModal(this.parentElement, this)">resize</button>
             <button class="closeModalButton" onclick="closeModal('modal3')">fermer</button>
@@ -256,7 +279,7 @@
         <div onmousedown="modalForeground(this)" onclick="modalForeground(this)" id="modal4" class="modal-element">
           <button class="closeModalButton" onclick="closeModal('modal4')" ontouchstart="closeModal('modal4')"><i class="fa-solid fa-xmark fa-2"></i></button>
           <button class="resizeModalButton" onclick="fullScreenModal(this.parentElement, this)" ontouchstart="fullScreenModal(this.parentElement, this)"><i class="fa-regular fa-window-maximize fa-2"></i></i></button>
-          
+
             <div id="clock_container">
                 <div id="clock_buttons_container">
                     <button id="clock_hour_btn" class="clock_btn">Heure</button>
@@ -336,11 +359,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 30%;
+    width: 20%;
+    padding: 1px;
+  }
+
+  .icons_app:hover{
+    padding: 0px;
+    border: solid 1px;
   }
 
   main{
-    width: 100vw;
+    width: 90vw;
     height: 81vh;
   }
 
@@ -349,4 +378,120 @@
     max-width: 50%;
     flex-wrap: wrap;
   }
+
+  /*file explorer style*/
+
+  #fileExplorer{
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    height: 550px;
+    background: rgba(255, 255, 255, 0.69);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 4px 24px -1px rgb(0 0 0 / 25%);
+    backdrop-filter: blur(2px);
+    border-radius: 10px;
+  }
+
+  .display{
+    height: max-content;
+    padding: 60px 20px 0 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    color: white;
+    text-align: right;
+  }
+
+  .keys {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 67%;
+    gap: 17px;
+    background: rgba(255, 255, 255, 0.59);
+    border-top: 1px solid #FFFFFF;
+    backdrop-filter: blur(2px);
+    border-radius: 10px;
+    padding: 20px 20px 20px 20px;
+  }
+
+  /*********************/
+
+  /*tree style*/
+  /* Remove default bullets */
+ul, .tree-list {
+  list-style-type: none;
+}
+
+/* Remove margins and padding from the parent ul */
+.tree-list {
+  margin: 0;
+  padding: 0;
+  width: 500px;
+}
+
+/* Style the caret/arrow */
+.caret {
+  cursor: pointer;
+  user-select: none; /* Prevent text selection */
+}
+
+/* Create the caret/arrow with a unicode, and style it */
+.caret::before {
+  content: "\25B6";
+  color: black;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+/* Rotate the caret/arrow icon when clicked on (using JavaScript) */
+.caret-down::before {
+  transform: rotate(90deg);
+}
+
+/* Hide the nested list */
+.nested {
+  display: none;
+}
+
+/* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
+.active {
+  display: block;
+}
+  /************/
+
+  .modal-buttons-container{
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .modal-buttons-container  button{
+    margin: 5px;
+  }
+
+.closeModalButton {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+}
+
+.resizeModalButton {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+}
+
+.directory-element{
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 550px;
+  background: rgba(255, 255, 255, 0.69);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 4px 24px -1px rgb(0 0 0 / 25%);
+  backdrop-filter: blur(2px);
+  border-radius: 10px;
+}
 </style>
