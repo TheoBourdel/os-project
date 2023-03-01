@@ -19,6 +19,9 @@ function hideElement(element) {
     div.style.opacity = '0';
 }
 
+
+
+// DARK / LIGHT MODE
 function toggleDarkMode() {
   var body = document.getElementById("body");
   var currentClass = body.className;
