@@ -198,11 +198,19 @@ function createNewModal() {
     newModal.style.backgroundColor = "grey";
 
     let desktop = document.getElementById("desktop");
-    let buttonOpenModal = document.createElement('button');
+    let iconsApp = document.createElement("div");
+    iconsApp.setAttribute("class", "icons_app");
+
+    let buttonOpenModal = document.createElement('img');
     buttonOpenModal.setAttribute("id", "button"+folderName);
     buttonOpenModal.setAttribute("onclick", "openModal(\'"+ folderName +"\')");
+    buttonOpenModal.setAttribute("src", "assets/svg/Folder.svg");
+    let spanTitle = document.createElement("span");
+    spanTitle.innerHTML = folderName;
     buttonOpenModal.innerHTML = folderName;
-    desktop.appendChild(buttonOpenModal);
+    iconsApp.appendChild(buttonOpenModal);
+    iconsApp.appendChild(spanTitle);
+    desktop.appendChild(iconsApp);
 
     let buttonResize = document.createElement('button');
     buttonResize.setAttribute("onclick", onclick="fullScreenModal(this.parentElement, this)");

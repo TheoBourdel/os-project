@@ -8,6 +8,9 @@
 @import './base/reset';
 @import './components/calculator';
 @import './components/clock';
+@import './components/tictactoe';
+@import './components/settings';
+@import './components/login';
 
 
 :root {
@@ -27,12 +30,13 @@
   -webkit-text-size-adjust: 100%;
 }
 
-body {
+.light-mode {
+  background-image: url('../assets/images/test.png') !important;
   margin: 0;
   min-width: 100vw;
   min-height: 100vh;
-  background-image: url('../assets/images/background-light.png');
   background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
   display: flex;
   justify-content: space-between;
@@ -40,7 +44,32 @@ body {
   align-items: center;
 }
 
-
-
-
+.dark-mode {
+  background-image: url('../assets/images/background-dark.png') !important;
+  margin: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+@media screen and (max-width: 1200px) {
+  .lock {
+    bottom: 70px !important;
+    right: 50px;
+  }
+}
+.lock {
+  background: linear-gradient(90.99deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.35) 99.02%);
+  box-shadow: 0px 4px 25px -1px rgba(0, 0, 0, 0.25);
+  padding: 10px 30px 10px 30px;
+  border-radius: 20px;
+  position: absolute;
+  bottom: 20px;
+  right: 50px;
+}
 

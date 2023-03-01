@@ -12,7 +12,8 @@ const syntheseDate =  document.getElementById('clock_syntese_date');
 syntheseDate.innerHTML = new Date().toLocaleDateString('fr-FR', { weekday: 'long',  month: 'long', day: 'numeric' });
 
 const hours = document.getElementById('clock_hours');
-hours.innerHTML = new Date().getHours();
+hours.innerHTML = new Date().getHours('fr-FR', { hour: 'numeric', hour12: true });
+
 
 const munites = document.getElementById('clock_munites');
 munites.innerHTML = new Date().getMinutes();
@@ -47,7 +48,7 @@ colock_minutes_button.addEventListener(clickType, function() {
 });
 
 
-
+/////CHRONO::::::::::::::::::::::::::::::::::::::::
 
 
 
@@ -137,6 +138,37 @@ function raz()
 }
 
 /////////MUNITEUR
+// let vibration = true;
+// let vibrationStateImage = document.getElementById("vibration-image");
+
+// function changeVibrationState() {
+
+//     vibration = !vibration;
+
+//     if (vibration === true) {
+//         vibrationStateImage.src = "../../assets/svg/unmute.svg";
+//         vibrationStateImage.title = "vibration : ON"
+//         document.querySelector('#vibrationButton').innerHTML = 'Désactiver';
+//     } else {
+//         vibrationStateImage.src = "../../assets/svg/mute.svg";
+//         vibrationStateImage.title = "vibration : OFF"
+//         document.querySelector('#vibrationButton').innerHTML = 'Activer';
+//     }
+
+// }
+
+// function vibrate(ms) {
+//     if (vibration == true) {
+//         navigator.vibrate(ms);
+//     }
+// }
+
+// function vibratePattern() {
+//     if (vibration == true) {
+//         navigator.vibrate([300,100,300,100,300])
+//     }
+// }
+
 document.querySelector(".clock_timer").style.display = 'none';
 document.querySelector(".clock_timer_message").style.display = 'none';
 
@@ -144,44 +176,44 @@ document.querySelector(".clock_timer_message").style.display = 'none';
 var seconds;
 
 document.getElementById("clock_timer_button").addEventListener(clickType, function() {
-
-    const promptValue = prompt("Enter the time in minutes");
-    seconds = promptValue * 60 * 1000;
-    
     document.querySelector(".clock_timer").style.display = 'flex';
     document.getElementById("clock_timer_button").style.display = 'none';
 
-const time = new Date(seconds);
+    const promptValue = prompt("Enter the time in minutes");
+    if(promptValue != '' && promptValue != null){
+        seconds = promptValue * 60 * 1000;
+        let countDownSeconds = seconds / 1000;
+    
+        var inst = setInterval(change, 1000);
+        function change() {
 
-
-let countDownSeconds = seconds / 1000;
-
-var inst = setInterval(change, 1000);
-
-function change() {
-
-    countDownSeconds--;
-
-    if(countDownSeconds < 0) {
-
-        const audio = new Audio('./assets/sounds/alarm.mp3');
-        audio.play();
-        clearInterval(inst);
+            countDownSeconds--;
+        
+            if(countDownSeconds < 0) {
+                const audio = new Audio('./assets/sounds/alarm.mp3');
+                audio.play();
+                clearInterval(inst);
+                document.querySelector(".clock_timer").style.display = 'none';
+                document.querySelector(".clock_timer_message").style.display = 'block';
+                navigator.vibrate([300,100,300,100,300]);
+        
+                setTimeout(function() {
+                    document.getElementById("clock_timer_button").style.display = 'flex';
+                    document.querySelector(".clock_timer_message").style.display = 'none';
+                },6000);
+                return;
+            }
+        
+            const date = new Date(countDownSeconds * 1000);
+            document.getElementById("clock_timer").innerHTML = `${date.getMinutes()}:${date.getSeconds()}`;
+        }
+    } else {
+        document.getElementById("clock_timer_button").style.display = 'flex';
         document.querySelector(".clock_timer").style.display = 'none';
-        document.querySelector(".clock_timer_message").style.display = 'block';
-
-        setTimeout(function() {
-            document.getElementById("clock_timer_button").style.display = 'flex';
-        document.querySelector(".clock_timer_message").style.display = 'none';
-
-        },6000);
-
-        return;
     }
 
-    const date = new Date(countDownSeconds * 1000);
-    document.getElementById("clock_timer").innerHTML = `${date.getMinutes()}:${date.getSeconds()}`;
-}
 
 });
+
+
 

@@ -4,8 +4,37 @@ function startTime() {
     var h = today.getHours();
     var m = today.getMinutes();
     var s = today.getSeconds();
+
+    var showHour = document.getElementById("show-hour").checked;
+    var showMinute = document.getElementById("show-minute").checked;
+    var showSecond = document.getElementById("show-second").checked;
+
+    // Afficher ou masquer les heures
+    if (showHour) {
+        document.getElementById("hour").style.display = "inline";
+    } else {
+        document.getElementById("hour").style.display = "none";
+    
+    }
+    // Afficher ou masquer les minutes
+    if (showMinute) {
+        document.getElementById("minute").style.display = "inline";
+    } else {
+        document.getElementById("minute").style.display = "none";
+    }
+
+    // Afficher ou masquer les secondes
+    if (showSecond) {
+        document.getElementById("second").style.display = "inline";
+    } else {
+        document.getElementById("second").style.display = "none";
+    }
+
     m = checkTime(m);
-    document.getElementById('time').innerHTML = h + ":" + m;
+    // document.getElementById('time').innerHTML = h + ":" + m;
+    document.getElementById("hour").textContent = h + "h";
+    document.getElementById("minute").textContent = m + "m";
+    document.getElementById("second").textContent = s + "s";
     let t = setTimeout(startTime, 500);
 }
 
@@ -15,6 +44,7 @@ function checkTime(i) {
 }
 
 startTime();
+
 
 
 // VIBRATION
@@ -28,9 +58,11 @@ function changeVibrationState() {
     if (vibration === true) {
         vibrationStateImage.src = "../../assets/svg/unmute.svg";
         vibrationStateImage.title = "vibration : ON"
+        document.querySelector('#vibrationButton').innerHTML = 'Désactiver';
     } else {
         vibrationStateImage.src = "../../assets/svg/mute.svg";
         vibrationStateImage.title = "vibration : OFF"
+        document.querySelector('#vibrationButton').innerHTML = 'Activer';
     }
 
 }
@@ -141,7 +173,47 @@ setInterval(() => {
 
 
 // DATE
-var date = new Date();
-var date = date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate();
+// var date = new Date();
+// var date = date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate();
 
-document.getElementById('date').innerHTML = date;
+// document.getElementById('date').innerHTML = date;
+function startDate() {
+    var today = new Date();
+    var day = today.getDate();
+    var month = today.getMonth() + 1;
+    var year = today.getFullYear();
+
+    var showDay = document.getElementById("show-day").checked;
+    var showMonth = document.getElementById("show-month").checked;
+    var showYear = document.getElementById("show-year").checked;
+
+    // Afficher ou masquer le jour
+    if (showDay) {
+        document.getElementById("day").style.display = "inline";
+    } else {
+        document.getElementById("day").style.display = "none";
+    }
+    
+    // Afficher ou masquer le mois
+    if (showMonth) {
+        document.getElementById("month").style.display = "inline";
+    } else {
+        document.getElementById("month").style.display = "none";
+    }
+
+    // Afficher ou masquer l'année
+    if (showYear) {
+        document.getElementById("year").style.display = "inline";
+    } else {
+        document.getElementById("year").style.display = "none";
+    }
+
+    document.getElementById("day").textContent = day + "/";
+    document.getElementById("month").textContent = month + "/";
+    document.getElementById("year").textContent = year;
+
+    let t = setTimeout(startDate, 500);
+}
+
+startDate();
+
