@@ -127,6 +127,7 @@ var oWdgCursor = function (sElement, sLimite) {
   
   document.addEventListener('DOMContentLoaded',function(){
     var oZone1 = new oWdgCursor('fileExplorer');
+    var oZone1 = new oWdgCursor('modal1');  
     var oZone1 = new oWdgCursor('modal2');  
     var oZone1 = new oWdgCursor('modal3');
     var oZone1 = new oWdgCursor('modal4');
