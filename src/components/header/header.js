@@ -107,6 +107,7 @@ function changeVibrationState() {
         vibrationStateImage.src = "../../assets/svg/mute.svg";
         vibrationStateImage.title = "vibration : OFF"
         document.querySelector('#vibrationButton').innerHTML = 'Activer';
+        gainNode.gain.value = 0;
     }
 
 }
@@ -206,7 +207,7 @@ if (savedState === "hidden") {
   hideElement('#signal');
   toggleOff.checked = true;
 } else {
-  displayElement('#signal');
+  //displayElement('#signal');
   toggleOn.checked = true;
 }
 
@@ -235,69 +236,70 @@ toggleOn.addEventListener('click', function() {
     localStorage.setItem("signalState", "hidden");
   });
 
-// DATE
-// var date = new Date();
-// var date = date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate();
+//DATE
+var date = new Date();
+var date = date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate();
+// let t = setTimeout(startDate, 500);
+console.log(date)
+document.getElementById('date').innerHTML = date;
+// function startDate() {
+//     var today = new Date();
+//     var day = today.getDate();
+//     var month = today.getMonth() + 1;
+//     var year = today.getFullYear();
 
-// document.getElementById('date').innerHTML = date;
-function startDate() {
-    var today = new Date();
-    var day = today.getDate();
-    var month = today.getMonth() + 1;
-    var year = today.getFullYear();
+//     // Récupérer les valeurs du localStorage
+//     // var showDay = localStorage.getItem("show-day") === "true";
+//     // var showMonth = localStorage.getItem("show-month") === "true";
+//     // var showYear = localStorage.getItem("show-year") === "true";
 
-    // Récupérer les valeurs du localStorage
-    var showDay = localStorage.getItem("show-day") === "true";
-    var showMonth = localStorage.getItem("show-month") === "true";
-    var showYear = localStorage.getItem("show-year") === "true";
+//     // Cocher ou décocher les cases en fonction des valeurs du localStorage
+//     // document.getElementById("show-day").checked = showDay;
+//     // document.getElementById("show-month").checked = showMonth;
+//     // document.getElementById("show-year").checked = showYear;
 
-    // Cocher ou décocher les cases en fonction des valeurs du localStorage
-    document.getElementById("show-day").checked = showDay;
-    document.getElementById("show-month").checked = showMonth;
-    document.getElementById("show-year").checked = showYear;
+//     // Ajouter les événements pour mettre à jour l'affichage
+//     document.getElementById("show-day").addEventListener("change", function() {
+//         // localStorage.setItem("show-day", this.checked);
+//         document.getElementById("day").style.display = this.checked ? "inline" : "none";
+//       });
+//       document.getElementById("show-month").addEventListener("change", function() {
+//         // localStorage.setItem("show-month", this.checked);
+//         document.getElementById("month").style.display = this.checked ? "inline" : "none";
+//       });
+//       document.getElementById("show-year").addEventListener("change", function() {
+//         // localStorage.setItem("show-year", this.checked);
+//         document.getElementById("year").style.display = this.checked ? "inline" : "none";
+//       });
 
-    // Ajouter les événements pour mettre à jour l'affichage
-    document.getElementById("show-day").addEventListener("change", function() {
-        localStorage.setItem("show-day", this.checked);
-        document.getElementById("day").style.display = this.checked ? "inline" : "none";
-      });
-      document.getElementById("show-month").addEventListener("change", function() {
-        localStorage.setItem("show-month", this.checked);
-        document.getElementById("month").style.display = this.checked ? "inline" : "none";
-      });
-      document.getElementById("show-year").addEventListener("change", function() {
-        localStorage.setItem("show-year", this.checked);
-        document.getElementById("year").style.display = this.checked ? "inline" : "none";
-      });
-
-    // Afficher ou masquer le jour
-    if (showDay) {
-        document.getElementById("day").style.display = "inline";
-    } else {
-        document.getElementById("day").style.display = "none";
-    }
+//     // Afficher ou masquer le jour
+//     // if (showDay) {
+//     //     document.getElementById("day").style.display = "inline";
+//     // } else {
+//     //     document.getElementById("day").style.display = "none";
+//     // }
     
-    // Afficher ou masquer le mois
-    if (showMonth) {
-        document.getElementById("month").style.display = "inline";
-    } else {
-        document.getElementById("month").style.display = "none";
-    }
+//     // // Afficher ou masquer le mois
+//     // if (showMonth) {
+//     //     document.getElementById("month").style.display = "inline";
+//     // } else {
+//     //     document.getElementById("month").style.display = "none";
+//     // }
 
-    // Afficher ou masquer l'année
-    if (showYear) {
-        document.getElementById("year").style.display = "inline";
-    } else {
-        document.getElementById("year").style.display = "none";
-    }
+//     // // Afficher ou masquer l'année
+//     // if (showYear) {
+//     //     document.getElementById("year").style.display = "inline";
+//     // } else {
+//     //     document.getElementById("year").style.display = "none";
+//     // }
 
-    document.getElementById("day").textContent = day + "/";
-    document.getElementById("month").textContent = month + "/";
-    document.getElementById("year").textContent = year;
+//     document.getElementById("day").textContent = day + "/";
+//     document.getElementById("month").textContent = month + "/";
+//     document.getElementById("year").textContent = year;
 
 
-    let t = setTimeout(startDate, 500);
-}
+//     let t = setTimeout(startDate, 500);
+// }
 
-startDate();
+// startDate();
 
