@@ -9,6 +9,15 @@ hideBtn.addEventListener('click', () => {
     myDiv.style.display = 'none';
 });
 
+showBtn.addEventListener('touchstart', () => {
+  myDiv.style.display = 'block';
+});
+
+hideBtn.addEventListener('touchstart', () => {
+  myDiv.style.display = 'none';
+});
+
+
 function displayElement(element) {
     const div = document.querySelector(element);
     div.style.opacity = '1';
